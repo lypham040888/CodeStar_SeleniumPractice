@@ -26,6 +26,30 @@ public class CommonActions {
 		elementClick.click();
 	}
 
+	public void click(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
+		element.click();
+	}
+
+	public void draganddrop(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
+		element.click();
+	}
+
+	public void selectByText(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
+		element.click();
+	}
+
+	public void selectByIndex(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
+		element.click();
+	}
+
 	/**
 	 * switch to a frame
 	 * 
