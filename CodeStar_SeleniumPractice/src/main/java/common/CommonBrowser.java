@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -63,12 +64,12 @@ public class CommonBrowser {
 		} else {
 			if (proName != null && proName != "") {
 				FirefoxProfile ffprofile = new FirefoxProfile(new File(proName));
-				dr = new FirefoxDriver(ffprofile);
+				dr = new FirefoxDriver();
 			} else {
 				FirefoxProfile fxProfile = new FirefoxProfile();
 				File browserAppPath = new File("/usr/bin/geckodriver");
 				FirefoxBinary ffBin = new FirefoxBinary(browserAppPath);
-				dr = new FirefoxDriver(ffBin, fxProfile);
+				dr = new FirefoxDriver();
 			}
 		}
 		if (url2 != "" && url2 != null) {
@@ -82,9 +83,24 @@ public class CommonBrowser {
 	}
 
 	public WebDriver initChromeDriver(String URL) {
-		ChromeOptions options = new ChromeOptions();
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
-		driver = new ChromeDriver(options);
+		//ChromeOptions options = new ChromeOptions();
+		//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
+		//driver = new ChromeDriver(options);
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get(URL);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		return driver;
+	}
+	public WebDriver initFirefoxDriver(String URL) {
+		driver = new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get(URL);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		return driver;
+	}
+	public WebDriver initEdgeDriver(String URL) {
+		driver = new EdgeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);

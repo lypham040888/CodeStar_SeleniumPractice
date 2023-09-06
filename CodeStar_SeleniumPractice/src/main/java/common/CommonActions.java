@@ -2,6 +2,8 @@ package common;
 
 import static common.TestLogger.info;
 
+import java.time.Duration;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
@@ -19,7 +21,7 @@ public class CommonActions {
 
 	public void click(Object locator) {
 		By xPath = locator instanceof By ? (By) locator : By.xpath(locator.toString());
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement elementClick = wait.until(ExpectedConditions.elementToBeClickable(xPath));
 		elementClick.click();
 	}
