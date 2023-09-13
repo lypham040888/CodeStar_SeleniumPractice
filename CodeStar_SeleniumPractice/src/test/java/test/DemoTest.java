@@ -1,3 +1,4 @@
+package test;
 import org.openqa.selenium.WebDriver;
 
 import common.CommonActions;
@@ -29,7 +30,7 @@ public class DemoTest {
 		// driver = cb.initFirefoxDriver(Test1_WebInfo.testUrl);
 		driver = cb.initEdgeDriver(Test1_WebInfo.testUrl);
 		CommonActions action = new CommonActions();
-		
+		action.click(null);
 		cb.quitDriver(driver);
 
 	}

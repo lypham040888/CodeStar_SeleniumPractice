@@ -83,15 +83,17 @@ public class CommonBrowser {
 	}
 
 	public WebDriver initChromeDriver(String URL) {
-		//ChromeOptions options = new ChromeOptions();
-		//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
-		//driver = new ChromeDriver(options);
+		// ChromeOptions options = new ChromeOptions();
+		// System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
+		// + "\\driver\\chromedriver.exe");
+		// driver = new ChromeDriver(options);
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		return driver;
 	}
+
 	public WebDriver initFirefoxDriver(String URL) {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
@@ -99,6 +101,7 @@ public class CommonBrowser {
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		return driver;
 	}
+
 	public WebDriver initEdgeDriver(String URL) {
 		driver = new EdgeDriver();
 		driver.manage().window().maximize();
@@ -131,13 +134,18 @@ public class CommonBrowser {
 	 * 
 	 * @param dr
 	 */
-	public void quitDriver(WebDriver dr) {
+	public void closeDriver(WebDriver dr) {
 		if (dr.toString().contains("null")) {
 			System.out.print("All Browser windows are closed ");
 		} else {
 			driver.manage().deleteAllCookies();
 			dr.close();
 		}
+	}
+
+	public void quitDriver(WebDriver dr) {
+		dr.quit();
+
 	}
 
 }
