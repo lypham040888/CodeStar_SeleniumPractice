@@ -28,7 +28,7 @@ public class DemoTest {
 		CommonBrowser cb = new CommonBrowser();
 		// driver = cb.initChromeDriver(Test1_WebInfo.testUrl);
 		// driver = cb.initFirefoxDriver(Test1_WebInfo.testUrl);
-		driver = cb.initEdgeDriver(Test1_WebInfo.testUrl);
+		driver = cb.initEdgeDriver(Test1_WebInfo.bepAntoanUrl);
 		CommonActions action = new CommonActions();
 		action.click(null);
 		cb.quitDriver(driver);

@@ -50,6 +50,13 @@ public class CommonActions {
 		element.click();
 	}
 
+	public void sendKeys(WebElement element, String value) {
+		
+		element.clear();
+		element.sendKeys(value);
+
+	}
+
 	/**
 	 * switch to a frame
 	 * 
