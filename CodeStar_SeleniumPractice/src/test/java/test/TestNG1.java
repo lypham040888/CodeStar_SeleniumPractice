@@ -3,6 +3,10 @@ package test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+
+import java.util.Date;
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +21,8 @@ import common.CommonBrowser;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class TestNG1 {
 	WebDriver driver;
@@ -35,9 +41,10 @@ public class TestNG1 {
 	public void beforeTest() {
 		cb = new CommonBrowser();
 		actions = new CommonActions();
-		// driver = cb.initChromeDriver("https://bepantoan.vn/");
-		driver = cb.initChromeDriver("https://demo.seleniumeasy.com/basic-radiobutton-demo.html");
-		//driver = cb.initChromeDriver("https://alada.vn/");
+		// driver = cb.initChromeDriver("https://bepantoan.vn/")
+		driver =cb.initChromeDriver("https://alada.vn/thong-tin-ca-nhan");
+		// cb.initChromeDriver("https://demo.seleniumeasy.com/basic-radiobutton-demo.html");
+		// driver = cb.initChromeDriver("https://alada.vn/tai-khoan/dang-ky.html");
 	}
 
 	@Test(priority = 2)
@@ -66,10 +73,16 @@ public class TestNG1 {
 		WebElement txtFirstName = driver.findElement(By.id("txtFirstname"));
 		actions.sendKeys(txtFirstName, "Jack Pham");
 		cb.pause(3000);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
+		Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
+		Random random = new Random();
+		int number = random.nextInt(40);
 		WebElement txtEmail = driver.findElement(By.id("txtEmail"));
-		actions.sendKeys(txtEmail, "Jack0014.pham@gmail.com");
+		String email = "Jack" + String.valueOf(number) + sdf1.format(timestamp2) + ".pham@gmail.com";
+		actions.sendKeys(txtEmail, email);
 		WebElement txtCEmail = driver.findElement(By.id("txtCEmail"));
-		actions.sendKeys(txtCEmail, "Jack0014.pham@gmail.com");
+		actions.sendKeys(txtCEmail, email);
 		WebElement txtPassword = driver.findElement(By.id("txtPassword"));
 		actions.sendKeys(txtPassword, "123456789");
 		WebElement txtCPassword = driver.findElement(By.id("txtCPassword"));
@@ -78,36 +91,41 @@ public class TestNG1 {
 		actions.sendKeys(txtPhone, "0978344222");
 		WebElement btnSubmit = driver.findElement(By.xpath("//button[@type='submit']"));
 		btnSubmit.click();
-		cb.pause(2000);
-		//WebElement divThongbao = driver.findElement(By.xpath("//div[@id='thongbao']"));
+		cb.pause(1000);
+		//actions.takeScreenShotFullPage(driver);
+		//WebElement divThongbao = driver.findElement(By.id("thongbao"));
 		//String msgThongbao = divThongbao.getText();
 		//System.out.println(msgThongbao);
-		//WebElement lnkMenu = driver.findElement(By.xpath("//li[@id='showsub']//a[@rel='nofollow']"));
-		//lnkMenu.click();
-		//cb.pause(1000);
-		WebElement lnkEditUser = driver.findElement(By.xpath("//a[text()='Chỉnh sửa thông tin']"));
-		lnkEditUser.click();
-		cb.pause(1000);
-		WebElement member_lastname = driver.findElement(By.id("member_lastname"));
-		System.out.println("Ho:" + member_lastname);
-		WebElement member_firstname = driver.findElement(By.id("member_firstname"));
-		System.out.println("Ten:" + member_firstname);
+		// WebElement lnkMenu =
+		// driver.findElement(By.xpath("//li[@id='showsub']//a[@rel='nofollow']"));
+		// lnkMenu.click();
+		// cb.pause(1000);
+//		WebElement lnkEditUser = driver.findElement(By.xpath("//a[text()='Chỉnh sửa thông tin']"));
+//		lnkEditUser.click();
+//		cb.pause(1000);
+//		WebElement member_lastname = driver.findElement(By.id("member_lastname"));
+//		System.out.println("Ho:" + member_lastname);
+//		WebElement member_firstname = driver.findElement(By.id("member_firstname"));
+//		System.out.println("Ten:" + member_firstname);
 
 	}
+
 	@Test(priority = 1)
+	@Ignore
 	public void FillDataForHomework10_2() {
 		WebElement rdoMale = driver.findElement(By.xpath("//input[@type='radio' and @value='Male'][1]"));
 		rdoMale.click();
 		cb.pause(3000);
-		WebElement ageGroup = driver.findElement(By.xpath("//input[@type='radio' and @value='0 - 5' and @name='ageGroup']"));
+		WebElement ageGroup = driver
+				.findElement(By.xpath("//input[@type='radio' and @value='0 - 5' and @name='ageGroup']"));
 		ageGroup.click();
 		cb.pause(3000);
 
 	}
+
 	@Test(priority = 1)
-	@Ignore
 	public void CheckUserInformation() {
-		WebElement lnkDangNhap = driver.findElement(By.xpath("//a[text()='Đăng Nhập']"));
+		WebElement lnkDangNhap = driver.findElement(By.xpath("//body[@class='main']//div[@class='login']//a[text()='Đăng Nhập']"));
 		lnkDangNhap.click();
 		cb.pause(3000);
 		WebElement txtLoginUsername = driver.findElement(By.id("txtLoginUsername"));
@@ -116,9 +134,6 @@ public class TestNG1 {
 		actions.sendKeys(txtLoginPassword, "12345678");
 		WebElement btnLogin = driver.findElement(By.xpath("//button[text()='ĐĂNG NHẬP' and @type='submit']"));
 		btnLogin.click();
-		cb.pause(1000);
-		WebElement lnkMenu = driver.findElement(By.xpath("//li[@id='showsub']//a[@rel='nofollow']"));
-		lnkMenu.click();
 		cb.pause(1000);
 		WebElement lnkEditUser = driver.findElement(By.xpath("//a[@class='fs14']"));
 		lnkEditUser.click();

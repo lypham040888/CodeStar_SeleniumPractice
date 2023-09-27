@@ -1,15 +1,11 @@
 package common;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -19,13 +15,9 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import constants.Test1_WebInfo;
 
-import static common.TestLogger.*;
 
 public class CommonBrowser {
 	public WebDriver driver;
@@ -78,19 +70,25 @@ public class CommonBrowser {
 			dr.get(url1);
 		}
 		dr.manage().window().maximize();
-		dr.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		dr.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return dr;
 	}
 
 	public WebDriver initChromeDriver(String URL) {
 		// ChromeOptions options = new ChromeOptions();
-		// System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
-		// + "\\driver\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
+		 //+ "\\driver\\chromedriver.exe");
 		// driver = new ChromeDriver(options);
+		
+		//ChromeOptions options = new ChromeOptions();
+		//options.setPageLoadStrategy(PageLoadStrategy.NONE);
+		// Instantiate the chrome driver
+		//driver = new ChromeDriver(options);
+		
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
 
@@ -98,7 +96,7 @@ public class CommonBrowser {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
 
@@ -106,9 +104,16 @@ public class CommonBrowser {
 		driver = new EdgeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
+	public WebDriver navigate(String URL) {
+		driver.navigate().to(URL);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		return driver;
+	}
+
 
 	/**
 	 * pause driver in timeInMillis

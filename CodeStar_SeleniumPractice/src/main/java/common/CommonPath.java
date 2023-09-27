@@ -13,4 +13,8 @@ public class CommonPath {
 		String absolutePath = curDir + relativeFilePath;
 		return absolutePath;
 	}
+	public String getUserDir() {
+		String curDir = System.getProperty("user.dir");
+		return curDir;
+	}
 }

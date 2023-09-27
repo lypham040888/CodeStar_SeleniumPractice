@@ -2,7 +2,10 @@ package common;
 
 import static common.TestLogger.info;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,6 +15,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.apache.commons.io.FileUtils; // FileUtils thực hiện các chức năng đọc, ghi, copy, so sánh file 
+import org.openqa.selenium.OutputType; // Thực hiện capture screenshot và lưu trữ tại nơi chỉ định
+import org.openqa.selenium.TakesScreenshot;
 
 public class CommonActions {
 	/**
@@ -117,6 +123,20 @@ public class CommonActions {
 	public void verifyNull(String s) {
 		if (!s.equalsIgnoreCase("")) {
 			Assert.fail("Du lieu khong null");
+		}
+	}
+	public void takeScreenShotFullPage(WebDriver driver) {
+		String dirPath = System.getProperty("user.dir");
+		// Capture full page screenshot - selenium 3 & 4
+		
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		File trg = new File(dirPath + "\\screenshots\\fullpage.png");
+		try {
+			FileUtils.copyFile(src, trg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
