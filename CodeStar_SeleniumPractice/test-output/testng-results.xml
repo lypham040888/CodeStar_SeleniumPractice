@@ -1,45 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-09-27T21:07:54 ICT" name="Default suite" finished-at="2023-09-27T21:08:19 ICT" duration-ms="24080">
+  <suite started-at="2023-09-30T10:00:20 ICT" name="Default suite" finished-at="2023-09-30T10:01:57 ICT" duration-ms="96989">
     <groups>
     </groups>
-    <test started-at="2023-09-27T21:07:54 ICT" name="Default test" finished-at="2023-09-27T21:08:19 ICT" duration-ms="24080">
-      <class name="test.Homework11">
-        <test-method is-config="true" signature="initBrowser()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:07:54 ICT" name="initBrowser" finished-at="2023-09-27T21:08:05 ICT" duration-ms="10839" status="PASS">
+    <test started-at="2023-09-30T10:00:20 ICT" name="Default test" finished-at="2023-09-30T10:01:57 ICT" duration-ms="96989">
+      <class name="test.TestNG1">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:00:20 ICT" name="beforeSuite" finished-at="2023-09-30T10:00:20 ICT" duration-ms="44" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initBrowser -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:05 ICT" name="beforeMethod" finished-at="2023-09-27T21:08:05 ICT" duration-ms="5" status="PASS">
+        </test-method> <!-- beforeSuite -->
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:00:20 ICT" name="beforeTest" finished-at="2023-09-30T10:00:47 ICT" duration-ms="26174" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="Part1()[pri:1, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:05 ICT" name="Part1" finished-at="2023-09-27T21:08:14 ICT" duration-ms="8560" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Part1 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:14 ICT" name="afterMethod" finished-at="2023-09-27T21:08:14 ICT" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method signature="Part2()[pri:2, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:14 ICT" name="Part2" finished-at="2023-09-27T21:08:18 ICT" duration-ms="3744" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Part2 -->
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:14 ICT" name="beforeMethod" finished-at="2023-09-27T21:08:14 ICT" duration-ms="0" status="PASS">
+        </test-method> <!-- beforeTest -->
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:00:47 ICT" name="beforeMethod" finished-at="2023-09-30T10:00:47 ICT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:18 ICT" name="afterMethod" finished-at="2023-09-27T21:08:18 ICT" duration-ms="0" status="PASS">
+        <test-method signature="CheckUserInformation()[pri:1, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:00:47 ICT" name="CheckUserInformation" finished-at="2023-09-30T10:01:57 ICT" duration-ms="70057" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckUserInformation -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:01:57 ICT" name="afterMethod" finished-at="2023-09-30T10:01:57 ICT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:test.Homework11@58d75e99]" started-at="2023-09-27T21:08:18 ICT" name="closeBrowser" finished-at="2023-09-27T21:08:19 ICT" duration-ms="809" status="PASS">
+        <test-method is-config="true" signature="afterTest()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:01:57 ICT" name="afterTest" finished-at="2023-09-30T10:01:57 ICT" duration-ms="687" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeBrowser -->
-      </class> <!-- test.Homework11 -->
+        </test-method> <!-- afterTest -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:test.TestNG1@7c711375]" started-at="2023-09-30T10:01:57 ICT" name="afterSuite" finished-at="2023-09-30T10:01:57 ICT" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- test.TestNG1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

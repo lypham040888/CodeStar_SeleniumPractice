@@ -18,7 +18,6 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import constants.Test1_WebInfo;
 
-
 public class CommonBrowser {
 	public WebDriver driver;
 	protected int DEFAULT_TIMEOUT = 20000;
@@ -75,20 +74,16 @@ public class CommonBrowser {
 	}
 
 	public WebDriver initChromeDriver(String URL) {
-		// ChromeOptions options = new ChromeOptions();
-		//System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
-		 //+ "\\driver\\chromedriver.exe");
-		// driver = new ChromeDriver(options);
-		
-		//ChromeOptions options = new ChromeOptions();
-		//options.setPageLoadStrategy(PageLoadStrategy.NONE);
-		// Instantiate the chrome driver
-		//driver = new ChromeDriver(options);
-		
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
+		// options.setPageLoadStrategy(PageLoadStrategy.NONE);
+				// Instantiate the chrome driver
+		driver = new ChromeDriver(options);
+
+		// driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+//		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
 
@@ -107,13 +102,13 @@ public class CommonBrowser {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
+
 	public WebDriver navigate(String URL) {
 		driver.navigate().to(URL);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		return driver;
 	}
-
 
 	/**
 	 * pause driver in timeInMillis

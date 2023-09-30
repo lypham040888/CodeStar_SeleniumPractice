@@ -44,7 +44,7 @@ public class TestNG1 {
 		// driver = cb.initChromeDriver("https://bepantoan.vn/")
 		driver =cb.initChromeDriver("https://alada.vn/thong-tin-ca-nhan");
 		// cb.initChromeDriver("https://demo.seleniumeasy.com/basic-radiobutton-demo.html");
-		// driver = cb.initChromeDriver("https://alada.vn/tai-khoan/dang-ky.html");
+		//driver = cb.initChromeDriver("https://alada.vn/tai-khoan/dang-ky.html");
 	}
 
 	@Test(priority = 2)
@@ -92,21 +92,10 @@ public class TestNG1 {
 		WebElement btnSubmit = driver.findElement(By.xpath("//button[@type='submit']"));
 		btnSubmit.click();
 		cb.pause(1000);
-		//actions.takeScreenShotFullPage(driver);
-		//WebElement divThongbao = driver.findElement(By.id("thongbao"));
-		//String msgThongbao = divThongbao.getText();
-		//System.out.println(msgThongbao);
-		// WebElement lnkMenu =
-		// driver.findElement(By.xpath("//li[@id='showsub']//a[@rel='nofollow']"));
-		// lnkMenu.click();
-		// cb.pause(1000);
-//		WebElement lnkEditUser = driver.findElement(By.xpath("//a[text()='Chỉnh sửa thông tin']"));
-//		lnkEditUser.click();
-//		cb.pause(1000);
-//		WebElement member_lastname = driver.findElement(By.id("member_lastname"));
-//		System.out.println("Ho:" + member_lastname);
-//		WebElement member_firstname = driver.findElement(By.id("member_firstname"));
-//		System.out.println("Ten:" + member_firstname);
+		actions.takeScreenShotFullPage(driver);
+		WebElement divThongbao = driver.findElement(By.id("thongbao"));
+		String msgThongbao = divThongbao.getText();
+		System.out.println(msgThongbao);
 
 	}
 
@@ -131,17 +120,16 @@ public class TestNG1 {
 		WebElement txtLoginUsername = driver.findElement(By.id("txtLoginUsername"));
 		actions.sendKeys(txtLoginUsername, "Jack009.pham@gmail.com");
 		WebElement txtLoginPassword = driver.findElement(By.id("txtLoginPassword"));
-		actions.sendKeys(txtLoginPassword, "12345678");
+		actions.sendKeys(txtLoginPassword, "123456789");
 		WebElement btnLogin = driver.findElement(By.xpath("//button[text()='ĐĂNG NHẬP' and @type='submit']"));
 		btnLogin.click();
 		cb.pause(1000);
-		WebElement lnkEditUser = driver.findElement(By.xpath("//a[@class='fs14']"));
-		lnkEditUser.click();
-		cb.pause(1000);
+		driver.navigate().to("https://alada.vn/thong-tin-ca-nhan");
+		
 		WebElement member_lastname = driver.findElement(By.id("member_lastname"));
-		System.out.println("Ho:" + member_lastname);
+		System.out.println("Ho:" + member_lastname.getText());
 		WebElement member_firstname = driver.findElement(By.id("member_firstname"));
-		System.out.println("Ten:" + member_firstname);
+		System.out.println("Ten:" + member_firstname.getText());
 	}
 
 	@AfterTest
