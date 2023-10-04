@@ -42,9 +42,9 @@ public class TestNG1 {
 		cb = new CommonBrowser();
 		actions = new CommonActions();
 		// driver = cb.initChromeDriver("https://bepantoan.vn/")
-		driver =cb.initChromeDriver("https://alada.vn/thong-tin-ca-nhan");
+		//driver =cb.initChromeDriver("https://alada.vn/thong-tin-ca-nhan");
 		// cb.initChromeDriver("https://demo.seleniumeasy.com/basic-radiobutton-demo.html");
-		//driver = cb.initChromeDriver("https://alada.vn/tai-khoan/dang-ky.html");
+		driver = cb.initChromeDriver("https://alada.vn/tai-khoan/dang-ky.html");
 	}
 
 	@Test(priority = 2)
