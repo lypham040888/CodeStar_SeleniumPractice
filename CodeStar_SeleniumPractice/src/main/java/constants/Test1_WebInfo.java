@@ -7,8 +7,9 @@ public class Test1_WebInfo {
 	public static String baseUrl = "https://staging.capa.ai/";
 	public static String test1_baseUrl = "https://staging.capa.ai/";
 	public static String test2_baseUrl = "https://staging-.capa.ai/";
-	public static String prodwebURL = "https://rise.fairsketch.com/signin?redirect=https://rise.fairsketch.com/events";
+	public static String prodwebURL = "https://rise.fairsketch.com/signin";
 	public static String bepAntoanUrl ="https://bepantoan.vn/";
 	public static String orangeUrl ="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+	public static String aladaUrl = "https://alada.vn/tai-khoan/dang-ky.html";
 
 }

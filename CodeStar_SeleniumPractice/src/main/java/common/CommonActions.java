@@ -28,36 +28,40 @@ public class CommonActions {
 	public void click(Object locator) {
 		By xPath = locator instanceof By ? (By) locator : By.xpath(locator.toString());
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement elementClick = wait.until(ExpectedConditions.elementToBeClickable(xPath));
 		elementClick.click();
 	}
 
 	public void click(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 
 	public void draganddrop(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		//WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 
 	public void selectByText(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 
 	public void selectByIndex(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 
 	public void sendKeys(WebElement element, String value) {
-		
 		element.clear();
 		element.sendKeys(value);
 
@@ -125,10 +129,11 @@ public class CommonActions {
 			Assert.fail("Du lieu khong null");
 		}
 	}
+
 	public void takeScreenShotFullPage(WebDriver driver) {
 		String dirPath = System.getProperty("user.dir");
 		// Capture full page screenshot - selenium 3 & 4
-		
+
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);
 		File trg = new File(dirPath + "\\screenshots\\fullpage.png");
