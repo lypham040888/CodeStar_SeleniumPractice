@@ -24,6 +24,7 @@ public class Checkbox_Radio_Dropdownlist {
 	CommonActions actions;
 
 	@Test
+	@Ignore
 	public void checkRadio() {
 		driver = cb.initChromeDriver("http://demo.seleniumeasy.com/basic-radiobutton-demo.html");
 		System.out.println("Page Title");
@@ -32,14 +33,12 @@ public class Checkbox_Radio_Dropdownlist {
 		System.out.println("Page Source");
 		System.out.println(driver.getPageSource());
 		System.out.println("getWindowHandle");
-		
+
 		System.out.println(driver.getWindowHandle());
-		//driver.navigate().to("https://www.w3schools.com/html/html_basic.asp");
+		// driver.navigate().to("https://www.w3schools.com/html/html_basic.asp");
 		driver.navigate().refresh();
-		//driver.navigate().back();
-		
-		
-		
+		// driver.navigate().back();
+
 		List<WebElement> radioMale = driver.findElements(By.xpath("//input[@type='radio' and @value='Male']"));
 		for (WebElement webElement : radioMale) {
 			if (!webElement.isSelected()) {
@@ -94,6 +93,28 @@ public class Checkbox_Radio_Dropdownlist {
 		cb.pause(5000);
 	}
 
+	@Test
+	public void checkDropDownlis4() throws InterruptedException {
+		driver = cb.initChromeDriver("https://techydevs.com/demos/themes/html/trizen-demo/trizen/index.html");
+		Thread.sleep(2000);
+
+		// Click button để mở dropdownlist
+		// WebElement btnDropDownList =
+		// driver.findElement(By.xpath("//label[contains(text(),'Coach')]/following-sibling::div//select[1]"));
+		// btnDropDownList.click();
+		// WebElement ecomyItem =
+		// driver.findElement(By.xpath("//span[contains(text(),'Economy')]"));
+		// ecomyItem.click();
+
+		WebElement selectDrop = driver.findElement(
+				By.xpath("//label[contains(text(),'Coach')]/following-sibling::div//select[1]//option[@value='3']"));
+		selectDrop.click();
+
+		Thread.sleep(2000);
+
+		Thread.sleep(2000);
+	}
+
 	@BeforeTest
 	public void beforeTest() {
 		cb = new CommonBrowser();
@@ -103,7 +124,7 @@ public class Checkbox_Radio_Dropdownlist {
 
 	@AfterTest
 	public void afterTest() {
-		cb.closeDriver(driver);
+		// cb.closeDriver(driver);
 	}
 
 }

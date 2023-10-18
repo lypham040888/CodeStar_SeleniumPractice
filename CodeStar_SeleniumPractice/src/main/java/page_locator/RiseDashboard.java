@@ -12,7 +12,7 @@ public class RiseDashboard extends BasePage {
 	}
 
 	public static By userLogged = By.xpath("//span[@class='user-name ml10']");
-
+	
 	public boolean checkExistedUserName() {
 		boolean isExisted = false;
 		WebElement userSpan = driver.findElement(userLogged);
