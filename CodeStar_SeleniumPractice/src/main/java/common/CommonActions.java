@@ -12,9 +12,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.xml.sax.Locator;
 import org.apache.commons.io.FileUtils; // FileUtils thực hiện các chức năng đọc, ghi, copy, so sánh file 
 import org.openqa.selenium.OutputType; // Thực hiện capture screenshot và lưu trữ tại nơi chỉ định
 import org.openqa.selenium.TakesScreenshot;
@@ -24,6 +27,39 @@ public class CommonActions {
 	 * click on an element
 	 */
 	public WebDriver driver;
+	public int initWaitTime = 10;
+
+	public WebDriver initChromeDriver(String URL) {
+		ChromeOptions options = new ChromeOptions();
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
+		// Instantiate the chrome driver
+		driver = new ChromeDriver(options);
+
+		//driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get(URL);
+//		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		return driver;
+	}
+
+	/**
+	 * quit driver if driver existed
+	 * 
+	 * @param dr
+	 */
+	public void closeDriver(WebDriver dr) {
+		if (dr.toString().contains("null")) {
+			System.out.print("All Browser windows are closed ");
+		} else {
+			driver.manage().deleteAllCookies();
+			dr.close();
+		}
+	}
+
+	public void quitDriver() {
+		driver.quit();
+
+	}
 
 	public void click(Object locator) {
 		By xPath = locator instanceof By ? (By) locator : By.xpath(locator.toString());
@@ -41,8 +77,8 @@ public class CommonActions {
 	}
 
 	public void draganddrop(WebElement element) {
-		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		//WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
@@ -62,11 +98,54 @@ public class CommonActions {
 	}
 
 	public void sendKeys(WebElement element, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.clear();
 		element.sendKeys(value);
 
 	}
 
+	public void sendKeys(By locator, String value) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		element.clear();
+		element.sendKeys(value);
+
+	}
+
+	public String getText(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return element.getText();
+
+	}
+
+	public WebElement getElementPresentDOM(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return driver.findElement(locator);
+	}
+
+	public boolean isElementPresent(By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+		wait.until(ExpectedConditions.visibilityOf(getElementPresentDOM(locator)));
+		return getElementPresentDOM(locator).isDisplayed();
+	}
+
+	public void click(By locator) {
+		WebElement element = getElementPresentDOM(locator);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
+		element.click();
+	}
+
+	public void type(By locator, String value) {
+		WebElement element = getElementPresentDOM(locator);
+		element.sendKeys(value);
+	}
 	/**
 	 * switch to a frame
 	 * 
@@ -99,6 +178,9 @@ public class CommonActions {
 	 */
 	public void acceptAlert() {
 		try {
+			
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+			wait.until(ExpectedConditions.alertIsPresent());
 			Alert alert = driver.switchTo().alert();
 			alert.accept();
 
