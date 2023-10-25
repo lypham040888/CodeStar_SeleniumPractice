@@ -9,7 +9,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +37,7 @@ public class CommonActions {
 		// Instantiate the chrome driver
 		driver = new ChromeDriver(options);
 
-		//driver = new ChromeDriver();
+		// driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get(URL);
 //		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
@@ -178,7 +180,7 @@ public class CommonActions {
 	 */
 	public void acceptAlert() {
 		try {
-			
+
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
 			wait.until(ExpectedConditions.alertIsPresent());
 			Alert alert = driver.switchTo().alert();
@@ -190,16 +192,27 @@ public class CommonActions {
 		}
 	}
 
+	public void checkFramePresent(By locator) {
+		try {
+
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(initWaitTime));
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+			
+		} catch (NoSuchFrameException ex) {
+			info("No Frame present");
+			;
+		}
+	}
+
 	/**
 	 * 
 	 * @param locator
 	 * @param opParams
 	 */
-//	public void scrollToElement(Object locator, Object... opParams) {
-//		int notDisplay = (Integer) (opParams.length > 0 ? opParams[0] : 0);
-//		WebElement element = getElementPresent(locator, DEFAULT_TIMEOUT, 1, notDisplay);
-//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-//	}
+	public void scrollToElement(By locator) {
+		WebElement element = getElementPresentDOM(locator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}
 
 	/**
 	 * check field is null = ""
