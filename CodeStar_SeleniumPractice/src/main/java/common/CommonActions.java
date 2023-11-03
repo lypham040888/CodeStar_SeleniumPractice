@@ -239,4 +239,25 @@ public class CommonActions {
 			e.printStackTrace();
 		}
 	}
+	public void takeScreenShotElement(WebDriver driver, WebElement element) throws IOException {
+		String dirPath = System.getProperty("user.dir");
+		// Capture full page screenshot - selenium 3 & 4
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		
+		// capture screenshot of specific Web element -- selenium 4+
+		File srcLogo = element.getScreenshotAs(OutputType.FILE);
+		String pathLogo = dirPath + "\\screenshots\\logo.png";
+		File trgLogo = new File(pathLogo);
+		FileUtils.copyFile(srcLogo, trgLogo);
+		
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		File trg = new File(dirPath + "\\screenshots\\fullpage.png");
+		try {
+			FileUtils.copyFile(src, trg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

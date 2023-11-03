@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Regression Test All class on firefox"  thread-count="5" parallel="classes">
+	   <parameter name="browserName" value="firefox"></parameter>
+	    <classes>
+	      <class name="test.Bai14PageFactory"/>
+	      
+	    </classes>
+  </test> <!-- Test -->
+  <test name="Regression Test All class on chrome">
+	  <parameter name="browserName" value="chrome"></parameter>
+    <classes>
+      <class name="test.Bai14PageFactory"/>
+    </classes>
+  </test>
+  <test name="Regression Test All class on edge">
+	   <parameter name="browserName" value="edge"></parameter>
+	    <classes>
+	      <class name="test.Bai14PageFactory"/>
+	    </classes>
+  </test>
+</suite> <!-- Suite -->

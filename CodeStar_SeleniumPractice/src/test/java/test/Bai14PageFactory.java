@@ -3,6 +3,7 @@ package test;
 import org.testng.annotations.Test;
 
 import common.CommonActions;
+import common.CommonBase;
 import common.CommonBrowser;
 import page_locator.DashboardPageFactory;
 import page_locator.LoginPageFactory;
@@ -17,9 +18,10 @@ import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.AfterTest;
 
-public class Bai14PageFactory {
+public class Bai14PageFactory extends CommonBase{
 	CommonBrowser cb;
 	WebDriver driver;
 	CommonActions actions;
@@ -46,7 +48,7 @@ public class Bai14PageFactory {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		driver = cb.initChromeDriver(constants.Test1_WebInfo.prodwebURL);
+		
 	}
 
 	@AfterTest
@@ -54,11 +56,21 @@ public class Bai14PageFactory {
 		cb.quitDriver(driver);
 	}
 
+//	@BeforeTest
+//	public void beforeTest() {
+//		cb = new CommonBrowser();
+//		actions = new CommonActions();
+//		driver = cb.initChromeDriver(constants.Test1_WebInfo.prodwebURL);
+//		cb.pause(4000);
+//	}
 	@BeforeTest
-	public void beforeTest() {
+	@Parameters("browserName")
+	public void beforeTest(String browser) {
 		cb = new CommonBrowser();
 		actions = new CommonActions();
-		// driver = cb.initChromeDriver(constants.Test1_WebInfo.prodwebURL);
+		driver = setupDriver(browser);
+		driver.get(constants.Test1_WebInfo.prodwebURL);
+		
 		cb.pause(4000);
 	}
 

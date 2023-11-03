@@ -84,7 +84,7 @@ public class TestNG1 {
 		WebElement txtCEmail = driver.findElement(By.id("txtCEmail"));
 		actions.sendKeys(txtCEmail, email);
 		WebElement txtPassword = driver.findElement(By.id("txtPassword"));
-		actions.sendKeys(txtPassword, "123456789");
+		actions.sendKeys(txtPassword, "123456789");  
 		WebElement txtCPassword = driver.findElement(By.id("txtCPassword"));
 		actions.sendKeys(txtCPassword, "123456789");
 		WebElement txtPhone = driver.findElement(By.id("txtPhone"));
